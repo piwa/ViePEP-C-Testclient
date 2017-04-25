@@ -16,3 +16,4 @@ mvnw
 *.iml
 viepep4.0.properties
 mysql.properties
+.idea

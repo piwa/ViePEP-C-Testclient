@@ -1,6 +1,8 @@
 package at.ac.tuwien.infosys.viepepc;
 
 import at.ac.tuwien.infosys.viepepc.database.entities.*;
+import at.ac.tuwien.infosys.viepepc.database.entities.services.ServiceType;
+import at.ac.tuwien.infosys.viepepc.database.entities.workflow.*;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HttpResponse;
 import org.apache.http.StatusLine;
@@ -42,19 +44,29 @@ public class App implements CommandLineRunner {
     public void run(String... args) {
         try {
             //testConstant();
-            //testTau_T_1();
+            testTau_T_1();
             //testPyramid();
 
         //        testSingleShot();
-            toit_test_1();
+       //     toit_test_1();
         }catch(Exception ex ){
             log.error("EXCEPTION", ex);
         }
+
+        System.exit(0);
+    }
+
+    private void testTau_T_1() throws Exception {
+        log.info("test client started");
+
+        List<String> processTypes = new ArrayList<>();
+        processTypes.add("tau_t_1_test");
+        transformAndInvoke(processTypes);
     }
 
 
     private void toit_test_1() throws Exception {
-        System.out.println("test client started");
+        log.info("test client started");
 
         List<String> processTypes = new ArrayList<>();
         processTypes.add("toit_process_1");
@@ -68,17 +80,11 @@ public class App implements CommandLineRunner {
     }
 
     private void testSingleShot() throws Exception {
-        System.out.println("test client started");
+        log.info("test client started");
 
         List<String> processTypes = new ArrayList<>();
         processTypes.add("toit_process_1");
         transformAndInvoke(processTypes);
-
-//        Thread.sleep( 1000 * 60);
-
-//        processTypes = new ArrayList<>();
-//        processTypes.add("process3");
-//        transformAndInvoke(processTypes);
     }
 
     private void testConstant() throws Exception {
@@ -266,7 +272,7 @@ public class App implements CommandLineRunner {
 
     private long getExecDuration(Element currentElement) {
         if (currentElement instanceof ProcessStep) {
-            return ((ProcessStep) currentElement).getServiceType().getMakeSpan();
+            return ((ProcessStep) currentElement).getServiceType().getServiceTypeResources().getMakeSpan();
         } else {
             long exec = 0;
             if (currentElement instanceof WorkflowElement) {
@@ -319,17 +325,17 @@ public class App implements CommandLineRunner {
         StringWriter stringWriter = new StringWriter();
         m.marshal(workflowElements, stringWriter);
 
-        Unmarshaller unmarshaller = context.createUnmarshaller();
-
         String string = stringWriter.toString();
-        Object unmarshal = unmarshaller.unmarshal(new StringReader(string));
+//        Unmarshaller unmarshaller = context.createUnmarshaller();
+        //        Object unmarshal = unmarshaller.unmarshal(new StringReader(string));
+        log.info(string);
 
         StringEntity entity = new StringEntity(string);
         entity.setContentType("application/xml");
         put.setEntity(entity);
         HttpResponse response = httpclient.execute(put);
         StatusLine statusLine = response.getStatusLine();
-        System.out.println(statusLine);
+        log.info(statusLine.toString());
 
 /*
         RestTemplate restTemplate = new RestTemplate();

@@ -28,12 +28,20 @@ import java.util.*;
 @Slf4j
 public class App implements CommandLineRunner {
 
-    @Value("${viepep.url}")
-    private String POST_URL = "http://localhost:8088/addWorkflowRequests";
+    @Autowired
+    private ViepepCAccess viepepCAccess;
+
+
     @Value("${process.model.max}")
     private int MAX_PROCESS_MODEL = 5;
     @Value("${factor}")
-    private double factor = 1.25;
+    private double factor = 2.5;
+
+    @Value("${request.pattern}")
+    private String requestPattern = "pyramid";
+    @Value("${request.interval}")
+    private int requestInterval = 60;
+
 
     @Autowired
     private ExampleProcesses exampleProcesses;
@@ -43,12 +51,17 @@ public class App implements CommandLineRunner {
 
     public void run(String... args) {
         try {
-            //testConstant();
-            testTau_T_1();
-            //testPyramid();
+            if(requestPattern.equalsIgnoreCase("pyramid")) {
+                testPyramid();
+            }
+            else {
+                testConstant();
+            }
 
-        //        testSingleShot();
-       //     toit_test_1();
+
+            //testTau_T_1();
+            //testSingleShot("process2");
+            //toit_test_1();
         }catch(Exception ex ){
             log.error("EXCEPTION", ex);
         }
@@ -64,6 +77,13 @@ public class App implements CommandLineRunner {
         transformAndInvoke(processTypes);
     }
 
+    private void testSingleShot(String processName) throws Exception {
+        log.info("test client started");
+
+        List<String> processTypes = new ArrayList<>();
+        processTypes.add(processName);
+        transformAndInvoke(processTypes);
+    }
 
     private void toit_test_1() throws Exception {
         log.info("test client started");
@@ -93,10 +113,11 @@ public class App implements CommandLineRunner {
         int k = 0;
         for (int j = 0; j < 20; j++) {
             List<String> processTypes = new ArrayList<>();
-            int i1 = 10;
-            if (j == 12) {
-                i1 = 4;
-            }
+//            int i1 = 10;
+//            if (j == 12) {
+//                i1 = 4;
+//            }
+            int i1 = MAX_PROCESS_MODEL;
             for (int i = 1; i <= i1; i++) {
 //                processTypes.add(("process" + ((k % 10) + 1)));
                 processTypes.add(("cloudPaperProcess" + ((k % MAX_PROCESS_MODEL) + 1)));
@@ -105,7 +126,7 @@ public class App implements CommandLineRunner {
             summe += processTypes.size();
             transformAndInvoke(processTypes);
             System.out.println(j + ": " + simpleDateFormat.format(new Date()) + ", sum: " + summe + ", types: " + processTypes);
-            Thread.sleep(1000 * 60);
+            Thread.sleep(1000 * requestInterval);
         }
 
         System.out.println("sum: " + summe);
@@ -158,7 +179,7 @@ public class App implements CommandLineRunner {
 //                System.out.println(i+" : " + sum + " getCount " + getCount + " : " + serviceTypes.size() + " " + serviceTypes);
                     transformAndInvoke(serviceTypes);
                     System.out.println(i + ": " + simpleDateFormat.format(new Date()) + ", sum: " + sum + ", types: " + serviceTypes);
-                    Thread.sleep(1000 * 60);
+                    Thread.sleep(1000 * requestInterval);
                 }
             }
 
@@ -248,7 +269,7 @@ public class App implements CommandLineRunner {
             }
         }
         try {
-            sendRequests(requestList);
+            viepepCAccess.sendRequests(requestList);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -308,41 +329,6 @@ public class App implements CommandLineRunner {
     }
 
 
-    private void sendRequests(List<WorkflowElement> workflowElement) throws Exception {
 
-        WorkflowElements workflowElements = new WorkflowElements();
-        workflowElements.setWorkflowElements(workflowElement);
-
-        HttpPost put = new HttpPost(POST_URL);
-//        HttpPost put = new HttpPost("http://128.130.172.211:8080/cxf/workflow/addWorkflowRequest");
-        //HttpPut put = new HttpPut("http://128.130.172.211:8080/cxf/workflow/addWorkflowRequest");
-        HttpClient httpclient = HttpClients.createDefault();
-
-        JAXBContext context = JAXBContext.newInstance(WorkflowElements.class);
-        Marshaller m = context.createMarshaller();
-        m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-
-        StringWriter stringWriter = new StringWriter();
-        m.marshal(workflowElements, stringWriter);
-
-        String string = stringWriter.toString();
-//        Unmarshaller unmarshaller = context.createUnmarshaller();
-        //        Object unmarshal = unmarshaller.unmarshal(new StringReader(string));
-        log.info(string);
-
-        StringEntity entity = new StringEntity(string);
-        entity.setContentType("application/xml");
-        put.setEntity(entity);
-        HttpResponse response = httpclient.execute(put);
-        StatusLine statusLine = response.getStatusLine();
-        log.info(statusLine.toString());
-
-/*
-        RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity response = restTemplate.postForEntity(POST_URL, workflowElement, String.class);
-
-        log.info(String.valueOf(response.getStatusCodeValue()));
-*/
-    }
 
 }

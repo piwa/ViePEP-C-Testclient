@@ -3,6 +3,7 @@ package at.ac.tuwien.infosys.viepepc.configuration;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.*;
 import org.springframework.core.task.SimpleAsyncTaskExecutor;
+import org.springframework.retry.annotation.EnableRetry;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
@@ -15,6 +16,7 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 @ComponentScan(value= "at.ac.tuwien.infosys.viepepc")
 @EnableScheduling
 @EnableAsync
+@EnableRetry
 @PropertySources({
         @PropertySource("classpath:container-config/container.properties"),
         @PropertySource("classpath:database-config/mysql.properties"),

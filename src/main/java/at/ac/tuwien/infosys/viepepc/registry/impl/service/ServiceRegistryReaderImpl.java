@@ -29,7 +29,7 @@ public class ServiceRegistryReaderImpl implements ServiceRegistryReader {
         try {
             JAXBContext jaxbContext = JAXBContext.newInstance( ServiceRegistry.class );
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-            File file = Paths.get(ClassLoader.getSystemResource(serviceRegistryPath).toURI()).toFile();
+            File file = Paths.get(this.getClass().getClassLoader().getResource(serviceRegistryPath).toURI()).toFile();
             this.serviceRegistry = (ServiceRegistry) jaxbUnmarshaller.unmarshal(file);
         } catch (JAXBException e) {
             e.printStackTrace();

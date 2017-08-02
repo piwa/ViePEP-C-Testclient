@@ -148,7 +148,7 @@ public class App implements CommandLineRunner {
                 case 6:count = 3;break;
                 case 7:count = 4;break;
                 case 8:count = 4;break;
-                case 9:count = 5;break;
+                case 9:count = MAX_PROCESS_MODEL;break;
                 case 10:count = 0; break;
                 case 11:count = 1; break;
                 case 12:count = 1;break;

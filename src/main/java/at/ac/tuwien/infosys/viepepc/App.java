@@ -33,14 +33,14 @@ public class App implements CommandLineRunner {
 
 
     @Value("${process.model.max}")
-    private int MAX_PROCESS_MODEL = 5;
+    private int MAX_PROCESS_MODEL = 4;
     @Value("${factor}")
     private double factor = 2.5;
 
     @Value("${request.pattern}")
     private String requestPattern = "pyramid";
     @Value("${request.interval}")
-    private int requestInterval = 60;
+    private int requestInterval = 120;
 
 
     @Autowired

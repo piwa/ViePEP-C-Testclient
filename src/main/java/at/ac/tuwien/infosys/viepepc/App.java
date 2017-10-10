@@ -137,7 +137,7 @@ public class App implements CommandLineRunner {
                 if (i > 0) {
                     transformAndInvoke(serviceTypes);
                     System.out.println(i + ": " + simpleDateFormat.format(new Date()) + ", sum: " + sum + ", types: " + serviceTypes);
-//                    Thread.sleep(1000 * requestInterval);
+                    Thread.sleep(1000 * requestInterval);
                 }
             }
 

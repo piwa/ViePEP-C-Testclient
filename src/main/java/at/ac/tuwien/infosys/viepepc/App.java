@@ -3,6 +3,7 @@ package at.ac.tuwien.infosys.viepepc;
 import at.ac.tuwien.infosys.viepepc.database.entities.services.ServiceType;
 import at.ac.tuwien.infosys.viepepc.database.entities.workflow.*;
 import lombok.extern.slf4j.Slf4j;
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
@@ -41,12 +42,14 @@ public class App implements CommandLineRunner {
 
     public void run(String... args) {
         try {
-            if(requestPattern.equalsIgnoreCase("pyramid")) {
-                testPyramid();
-            }
-            else {
+//            if(requestPattern.equalsIgnoreCase("pyramid")) {
+//                testPyramid();
+//            }
+//            else {
                 testConstant();
-            }
+//            }
+
+//            testHeuristic();
 
 
             //testTau_T_1();
@@ -68,12 +71,30 @@ public class App implements CommandLineRunner {
         transformAndInvoke(processTypes);
     }
 
+    private void testHeuristic() throws Exception {
+        System.out.println("test client started");
+        List<String> processTypes = new ArrayList<>();
+//        processTypes.add("process1");
+//        processTypes.add("process2");
+//        processTypes.add("process3");
+//        processTypes.add("process4");
+//        processTypes.add("process5");
+//
+//        processTypes.add("process6");
+//        processTypes.add("process7");
+//        processTypes.add("process8");
+        processTypes.add("process9");
+        processTypes.add("process10");
+        transformAndInvoke(processTypes);
+    }
+
 
     private void testConstant() throws Exception {
         System.out.println("test client started");
         int summe = 0;
         int k = 0;
-        for (int j = 0; j < 20; j++) {
+//        for (int j = 0; j < 20; j++) {
+        for (int j = 0; j < 10; j++) {
             List<String> processTypes = new ArrayList<>();
 
             int i1 = MAX_PROCESS_MODEL;
@@ -185,13 +206,13 @@ public class App implements CommandLineRunner {
 
 
                 default:
-                    workflowElement = exampleProcesses.getProcess9(UUID.randomUUID().toString().substring(0, 8) + "pr9", deadline);
+                    workflowElement = exampleProcesses.getProcess1(UUID.randomUUID().toString().substring(0, 8) + "pr1", deadline);
                     break;
 
             }
 
             long execDuration = getExecDuration(workflowElement);
-            workflowElement.setDeadline((long) ((new Date().getTime()) + execDuration * factor));
+            workflowElement.setDeadline((long) (DateTime.now().getMillis() + execDuration * factor));
             System.out.println(workflowElement.getName() + " Deadline " + simpleDateFormat.format(workflowElement.getDeadline()));
 
             requestList.add(workflowElement);

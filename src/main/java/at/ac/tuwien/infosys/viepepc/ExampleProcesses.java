@@ -63,7 +63,7 @@ public class ExampleProcesses {
         elem.setLastElement(true);
         andConstruct.addElement(elem);
         ProcessStep elem1 = new ProcessStep(name + ".1.2", serviceRegistryReader.findServiceType("Service2"), workflow.getName());
-        elem.setLastElement(true);
+        elem1.setLastElement(true);
         andConstruct.addElement(elem1);
         ProcessStep elem2 = new ProcessStep(name + ".1.3", serviceRegistryReader.findServiceType("Service3"), workflow.getName());
         elem2.setLastElement(true);
@@ -213,12 +213,14 @@ public class ExampleProcesses {
         seq.addElement(new ProcessStep(name + ".1", serviceRegistryReader.findServiceType("Service1"), workflow.getName()));
 
         ANDConstruct andConstruct = new ANDConstruct(name + "-2-AND");
-        andConstruct.addElement(new ProcessStep(name + ".2.1", serviceRegistryReader.findServiceType("Service2"), workflow.getName()));
+        ProcessStep ps = new ProcessStep(name + ".2.1", serviceRegistryReader.findServiceType("Service2"), workflow.getName());
+        ps.setLastElement(true);
+        andConstruct.addElement(ps);
 
         Sequence seq2 = new Sequence(name + "-3-seq");
         seq2.addElement(new ProcessStep(name + ".3", serviceRegistryReader.findServiceType("Service3"), workflow.getName()));
         LoopConstruct loopConstruct = new LoopConstruct(name + "-3-loop");
-        ProcessStep elem = new ProcessStep(name + "-3-loop-1", serviceRegistryReader.findServiceType("Service4"), workflow.getName());
+        ProcessStep elem = new ProcessStep(name + "-3-loop-1", serviceRegistryReader.findServiceType("Service2"), workflow.getName());
         elem.setLastElement(true);
         loopConstruct.addElement(elem);
 

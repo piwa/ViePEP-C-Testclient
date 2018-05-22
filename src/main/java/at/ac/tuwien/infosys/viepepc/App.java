@@ -93,8 +93,8 @@ public class App implements CommandLineRunner {
         System.out.println("test client started");
         int summe = 0;
         int k = 0;
-        for (int j = 0; j < 20; j++) {
-//        for (int j = 0; j < 10; j++) {
+//        for (int j = 0; j < 20; j++) {
+        for (int j = 0; j < 10; j++) {
             List<String> processTypes = new ArrayList<>();
 
             int i1 = MAX_PROCESS_MODEL;
@@ -105,7 +105,7 @@ public class App implements CommandLineRunner {
             }
             summe += processTypes.size();
             transformAndInvoke(processTypes);
-            System.out.println(j + ": " + simpleDateFormat.format(new Date()) + ", sum: " + summe + ", types: " + processTypes);
+            log.info(j + ": " + simpleDateFormat.format(new Date()) + ", sum: " + summe + ", types: " + processTypes);
             Thread.sleep(1000 * requestInterval);
         }
 
@@ -213,7 +213,7 @@ public class App implements CommandLineRunner {
 
             long execDuration = getExecDuration(workflowElement);
             workflowElement.setDeadline((long) (DateTime.now().getMillis() + execDuration * factor));
-            System.out.println(workflowElement.getName() + " Deadline " + simpleDateFormat.format(workflowElement.getDeadline()));
+            log.debug(workflowElement.getName() + " Deadline " + simpleDateFormat.format(workflowElement.getDeadline()));
 
             requestList.add(workflowElement);
 

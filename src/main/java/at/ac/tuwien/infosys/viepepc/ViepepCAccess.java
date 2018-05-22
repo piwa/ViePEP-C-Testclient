@@ -47,14 +47,14 @@ public class ViepepCAccess {
         String string = stringWriter.toString();
 //        Unmarshaller unmarshaller = context.createUnmarshaller();
         //        Object unmarshal = unmarshaller.unmarshal(new StringReader(string));
-        log.info(string);
+        log.debug(string);
 
         StringEntity entity = new StringEntity(string);
         entity.setContentType("application/xml");
         put.setEntity(entity);
         HttpResponse response = httpclient.execute(put);
         StatusLine statusLine = response.getStatusLine();
-        log.info(statusLine.toString());
+        log.debug(statusLine.toString());
 
 /*
         RestTemplate restTemplate = new RestTemplate();

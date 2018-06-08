@@ -94,7 +94,7 @@ public class App implements CommandLineRunner {
         int summe = 0;
         int k = 0;
         for (int j = 0; j < 20; j++) {
-//        for (int j = 0; j < 10; j++) {
+//        for (int j = 0; j < 5; j++) {
             List<String> processTypes = new ArrayList<>();
 
             int i1 = MAX_PROCESS_MODEL;

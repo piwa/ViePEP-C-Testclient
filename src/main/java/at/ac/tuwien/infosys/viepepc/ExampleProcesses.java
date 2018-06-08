@@ -150,7 +150,7 @@ public class ExampleProcesses {
 
         seq.addElement(new ProcessStep(name + ".5", serviceRegistryReader.findServiceType("Service8"), workflow.getName()));
 
-        ProcessStep elem = new ProcessStep(name + ".6", serviceRegistryReader.findServiceType("Service9"), workflow.getName());
+        ProcessStep elem = new ProcessStep(name + ".6", serviceRegistryReader.findServiceType("Service6"), workflow.getName());
         elem.setLastElement(true);
         seq.addElement(elem);
 
@@ -253,8 +253,8 @@ public class ExampleProcesses {
         ANDConstruct andConstruct2 = new ANDConstruct(name + "-3-AND");
         andConstruct2.addElement(new ProcessStep(name + ".3.1", serviceRegistryReader.findServiceType("Service7"), workflow.getName()));
         andConstruct2.addElement(new ProcessStep(name + ".3.2", serviceRegistryReader.findServiceType("Service8"), workflow.getName()));
-        andConstruct2.addElement(new ProcessStep(name + ".3.3", serviceRegistryReader.findServiceType("Service9"), workflow.getName()));
-        andConstruct2.addElement(new ProcessStep(name + ".3.4", serviceRegistryReader.findServiceType("Service10"), workflow.getName()));
+        andConstruct2.addElement(new ProcessStep(name + ".3.3", serviceRegistryReader.findServiceType("Service6"), workflow.getName()));
+        andConstruct2.addElement(new ProcessStep(name + ".3.4", serviceRegistryReader.findServiceType("Service5"), workflow.getName()));
         andConstruct2.addElement(new ProcessStep(name + ".3.5", serviceRegistryReader.findServiceType("Service1"), workflow.getName()));
         andConstruct2.addElement(new ProcessStep(name + ".3.6", serviceRegistryReader.findServiceType("Service2"), workflow.getName()));
         seq.addElement(andConstruct2);
@@ -273,10 +273,10 @@ public class ExampleProcesses {
 
         ANDConstruct andConstruct4 = new ANDConstruct(name + "-8-AND");
         andConstruct4.addElement(new ProcessStep(name + ".8.1", serviceRegistryReader.findServiceType("Service8"), workflow.getName()));
-        andConstruct4.addElement(new ProcessStep(name + ".8.2", serviceRegistryReader.findServiceType("Service9"), workflow.getName()));
+        andConstruct4.addElement(new ProcessStep(name + ".8.2", serviceRegistryReader.findServiceType("Service6"), workflow.getName()));
         seq.addElement(andConstruct4);
 
-        ProcessStep elem = new ProcessStep(name + ".9", serviceRegistryReader.findServiceType("Service10"), workflow.getName());
+        ProcessStep elem = new ProcessStep(name + ".9", serviceRegistryReader.findServiceType("Service5"), workflow.getName());
         elem.setLastElement(true);
         seq.addElement(elem);
 

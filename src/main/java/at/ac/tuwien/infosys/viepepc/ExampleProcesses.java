@@ -39,10 +39,10 @@ public class ExampleProcesses {
         Sequence seq = new Sequence(name + "-seq");
 
         XORConstruct xor = new XORConstruct(name + "-1-XOR");
-        ProcessStep elem = new ProcessStep(name + ".1.1", serviceRegistryReader.findServiceType("Service1"), workflow.getName());
+        ProcessStep elem = new ProcessStep(name + ".1.1", serviceRegistryReader.findServiceType("Service4"), workflow.getName());
         elem.setLastElement(true);
         xor.addElement(elem);
-        ProcessStep elem1 = new ProcessStep(name + ".1.2", serviceRegistryReader.findServiceType("Service4"), workflow.getName());
+        ProcessStep elem1 = new ProcessStep(name + ".1.2", serviceRegistryReader.findServiceType("Service1"), workflow.getName());
         elem1.setLastElement(true);
         xor.addElement(elem1);
 
@@ -59,7 +59,7 @@ public class ExampleProcesses {
         Sequence seq = new Sequence(name + "-seq");
 
         ANDConstruct andConstruct = new ANDConstruct(name + "-1-AND");
-        ProcessStep elem = new ProcessStep(name + ".1.1", serviceRegistryReader.findServiceType("Service7"), workflow.getName());
+        ProcessStep elem = new ProcessStep(name + ".1.1", serviceRegistryReader.findServiceType("Service4"), workflow.getName());
         elem.setLastElement(true);
         andConstruct.addElement(elem);
         ProcessStep elem1 = new ProcessStep(name + ".1.2", serviceRegistryReader.findServiceType("Service5"), workflow.getName());
@@ -84,8 +84,8 @@ public class ExampleProcesses {
         ANDConstruct andConstruct = new ANDConstruct(name + "-2-AND");
         andConstruct.addElement(new ProcessStep(name + ".2.1", serviceRegistryReader.findServiceType("Service6"), workflow.getName()));
         andConstruct.addElement(new ProcessStep(name + ".2.2", serviceRegistryReader.findServiceType("Service1"), workflow.getName()));
-        andConstruct.addElement(new ProcessStep(name + ".2.3", serviceRegistryReader.findServiceType("Service8"), workflow.getName()));
-        andConstruct.addElement(new ProcessStep(name + ".2.4", serviceRegistryReader.findServiceType("Service5"), workflow.getName()));
+        andConstruct.addElement(new ProcessStep(name + ".2.3", serviceRegistryReader.findServiceType("Service7"), workflow.getName()));
+        andConstruct.addElement(new ProcessStep(name + ".2.4", serviceRegistryReader.findServiceType("Service4"), workflow.getName()));
         andConstruct.addElement(new ProcessStep(name + ".2.5", serviceRegistryReader.findServiceType("Service2"), workflow.getName()));
         seq.addElement(andConstruct);
 
@@ -110,7 +110,7 @@ public class ExampleProcesses {
         WorkflowElement workflow = new WorkflowElement(name, deadline.getTime());
         Sequence seq = new Sequence(name + "-seq");
 
-        seq.addElement(new ProcessStep(name + ".1", serviceRegistryReader.findServiceType("Service2"), workflow.getName()));
+        seq.addElement(new ProcessStep(name + ".1", serviceRegistryReader.findServiceType("Service3"), workflow.getName()));
 
         XORConstruct xor = new XORConstruct(name + "-2-XOR");
         ProcessStep elem1 = new ProcessStep(name + ".2.1", serviceRegistryReader.findServiceType("Service7"), workflow.getName());

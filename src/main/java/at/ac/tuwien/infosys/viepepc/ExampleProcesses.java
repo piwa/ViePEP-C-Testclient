@@ -21,7 +21,7 @@ public class ExampleProcesses {
     public WorkflowElement getProcess1(String name, Date deadline ) throws ServiceTypeNotFoundException {
         WorkflowElement workflow = new WorkflowElement(name, deadline.getTime());
         Sequence seq = new Sequence(name + "-seq");
-        ProcessStep elem1 = new ProcessStep(name + ".1", serviceRegistryReader.findServiceType("Service2"), workflow.getName());
+        ProcessStep elem1 = new ProcessStep(name + ".1", serviceRegistryReader.findServiceType("Service8"), workflow.getName());
         seq.addElement(elem1);
         ProcessStep elem2 = new ProcessStep(name + ".2", serviceRegistryReader.findServiceType("Service4"), workflow.getName());
         seq.addElement(elem2);

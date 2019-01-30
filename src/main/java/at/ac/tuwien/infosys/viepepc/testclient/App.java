@@ -1,7 +1,8 @@
-package at.ac.tuwien.infosys.viepepc;
+package at.ac.tuwien.infosys.viepepc.testclient;
 
-import at.ac.tuwien.infosys.viepepc.database.entities.services.ServiceType;
-import at.ac.tuwien.infosys.viepepc.database.entities.workflow.*;
+import at.ac.tuwien.infosys.viepepc.library.entities.services.ServiceType;
+import at.ac.tuwien.infosys.viepepc.library.entities.workflow.*;
+import at.ac.tuwien.infosys.viepepc.library.entities.workflow.*;
 import lombok.extern.slf4j.Slf4j;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 
 @Component
@@ -42,18 +44,26 @@ public class App implements CommandLineRunner {
 
     public void run(String... args) {
         try {
-            if(requestPattern.equalsIgnoreCase("pyramid")) {
-                testPyramid();
-            }
-            else {
+//            if(requestPattern.equalsIgnoreCase("pyramid")) {
+//                testPyramid();
+//            }
+//            else {
                 testConstant();
-            }
+//            }
 
-//            testHeuristic();
+
+//            testSingleShot("process10");
+//            TimeUnit.SECONDS.sleep(90);
+//            testSingleShot("process1");
+//            TimeUnit.SECONDS.sleep(90);
+//            testSingleShot("process1");
+//            TimeUnit.SECONDS.sleep(90);
+//            testSingleShot("process1");
+//            TimeUnit.SECONDS.sleep(90);
+//            testSingleShot("process1");
 
 
             //testTau_T_1();
-            //testSingleShot("process2");
             //toit_test_1();
         }catch(Exception ex ){
             log.error("EXCEPTION", ex);
@@ -93,7 +103,7 @@ public class App implements CommandLineRunner {
         System.out.println("test client started");
         int summe = 0;
         int k = 0;
-        for (int j = 0; j < 20; j++) {
+        for (int j = 0; j < 20 ; j++) {
 //        for (int j = 0; j < 5; j++) {
             List<String> processTypes = new ArrayList<>();
 
@@ -202,6 +212,9 @@ public class App implements CommandLineRunner {
                     break;
                 case "process10":
                     workflowElement = exampleProcesses.getProcess10(UUID.randomUUID().toString().substring(0, 8) + "pr10", deadline);
+                    break;
+                case "process_parallel":
+                    workflowElement = exampleProcesses.getProcess_Parallel(UUID.randomUUID().toString().substring(0, 8) + "pr10", deadline);
                     break;
 
 

@@ -1,4 +1,4 @@
-package at.ac.tuwien.infosys.viepepc;
+package at.ac.tuwien.infosys.viepepc.testclient;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

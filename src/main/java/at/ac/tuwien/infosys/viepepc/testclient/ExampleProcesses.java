@@ -1,12 +1,11 @@
-package at.ac.tuwien.infosys.viepepc;
+package at.ac.tuwien.infosys.viepepc.testclient;
 
-import at.ac.tuwien.infosys.viepepc.database.entities.workflow.*;
-import at.ac.tuwien.infosys.viepepc.registry.ServiceRegistryReader;
-import at.ac.tuwien.infosys.viepepc.registry.impl.service.ServiceTypeNotFoundException;
+import at.ac.tuwien.infosys.viepepc.library.entities.workflow.*;
+import at.ac.tuwien.infosys.viepepc.library.registry.ServiceRegistryReader;
+import at.ac.tuwien.infosys.viepepc.library.registry.impl.service.ServiceTypeNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.Arrays;
 import java.util.Date;
 
 /**
@@ -285,5 +284,28 @@ public class ExampleProcesses {
         return workflow;
     }
 
+
+    public WorkflowElement getProcess_Parallel(String name, Date deadline ) throws ServiceTypeNotFoundException {
+
+        WorkflowElement workflow = new WorkflowElement(name, deadline.getTime());
+        Sequence seq = new Sequence(name + "-seq");
+
+        ANDConstruct andConstruct = new ANDConstruct(name + "-1-AND");
+        ProcessStep elem = new ProcessStep(name + ".1.1", serviceRegistryReader.findServiceType("Service1"), workflow.getName());
+        elem.setLastElement(true);
+        andConstruct.addElement(elem);
+        ProcessStep elem1 = new ProcessStep(name + ".1.2", serviceRegistryReader.findServiceType("Service1"), workflow.getName());
+        elem1.setLastElement(true);
+        andConstruct.addElement(elem1);
+        ProcessStep elem2 = new ProcessStep(name + ".1.3", serviceRegistryReader.findServiceType("Service1"), workflow.getName());
+        elem2.setLastElement(true);
+        andConstruct.addElement(elem2);
+
+        seq.addElement(andConstruct);
+
+        workflow.addElement(seq);
+
+        return workflow;
+    }
 
 }

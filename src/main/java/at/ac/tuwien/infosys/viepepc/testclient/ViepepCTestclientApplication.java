@@ -1,4 +1,4 @@
-package at.ac.tuwien.infosys.viepepc;
+package at.ac.tuwien.infosys.viepepc.testclient;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

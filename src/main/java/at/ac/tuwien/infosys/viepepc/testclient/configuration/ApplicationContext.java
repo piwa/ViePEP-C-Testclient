@@ -1,4 +1,4 @@
-package at.ac.tuwien.infosys.viepepc.configuration;
+package at.ac.tuwien.infosys.viepepc.testclient.configuration;
 
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.*;

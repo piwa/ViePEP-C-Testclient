@@ -1,7 +1,7 @@
-package at.ac.tuwien.infosys.viepepc.bootstrap;
+package at.ac.tuwien.infosys.viepepc.testclient.bootstrap;
 
-import at.ac.tuwien.infosys.viepepc.bootstrap.containers.ContainerConfigurationsReader;
-import at.ac.tuwien.infosys.viepepc.bootstrap.vmTypes.VmTypesReaderImpl;
+import at.ac.tuwien.infosys.viepepc.database.bootstrap.containers.ContainerConfigurationsReader;
+import at.ac.tuwien.infosys.viepepc.database.bootstrap.vmTypes.VmTypesReaderImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;

@@ -1,7 +1,7 @@
-package at.ac.tuwien.infosys.viepepc;
+package at.ac.tuwien.infosys.viepepc.testclient;
 
-import at.ac.tuwien.infosys.viepepc.database.entities.workflow.WorkflowElement;
-import at.ac.tuwien.infosys.viepepc.database.entities.workflow.WorkflowElements;
+import at.ac.tuwien.infosys.viepepc.library.entities.workflow.WorkflowElement;
+import at.ac.tuwien.infosys.viepepc.library.entities.workflow.WorkflowElements;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HttpResponse;
 import org.apache.http.StatusLine;

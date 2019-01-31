@@ -44,12 +44,12 @@ public class App implements CommandLineRunner {
 
     public void run(String... args) {
         try {
-//            if(requestPattern.equalsIgnoreCase("pyramid")) {
-//                testPyramid();
-//            }
-//            else {
+            if(requestPattern.equalsIgnoreCase("pyramid")) {
+                testPyramid();
+            }
+            else {
                 testConstant();
-//            }
+            }
 
 
 //            testSingleShot("process10");

@@ -214,7 +214,7 @@ public class App implements CommandLineRunner {
                     workflowElement = exampleProcesses.getProcess10(UUID.randomUUID().toString().substring(0, 8) + "pr10", deadline);
                     break;
                 case "process_parallel":
-                    workflowElement = exampleProcesses.getProcess_Parallel(UUID.randomUUID().toString().substring(0, 8) + "pr10", deadline);
+                    workflowElement = exampleProcesses.getProcess10(UUID.randomUUID().toString().substring(0, 8) + "pr10", deadline);
                     break;
 
 

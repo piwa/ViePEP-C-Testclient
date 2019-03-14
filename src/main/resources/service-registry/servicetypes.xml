@@ -120,4 +120,43 @@
       </serviceTypeResources>
       <onlyInternal>false</onlyInternal>
    </serviceType>
+
+
+
+   <serviceType>
+      <name>Service11</name>
+      <serviceTypeResources>
+         <cpuLoad>65</cpuLoad>
+         <memory>1</memory>
+         <makeSpan>240000</makeSpan>
+         <bootTime>3000</bootTime>
+         <dataToTransfer>6</dataToTransfer>
+         <internPort>8080</internPort>
+      </serviceTypeResources>
+      <onlyInternal>false</onlyInternal>
+   </serviceType>
+   <serviceType>
+      <name>Service12</name>
+      <serviceTypeResources>
+         <cpuLoad>80</cpuLoad>
+         <memory>1</memory>
+         <makeSpan>320000</makeSpan>
+         <bootTime>3000</bootTime>
+         <dataToTransfer>2</dataToTransfer>
+         <internPort>8080</internPort>
+      </serviceTypeResources>
+      <onlyInternal>false</onlyInternal>
+   </serviceType>
+   <serviceType>
+      <name>Service13</name>
+      <serviceTypeResources>
+         <cpuLoad>135</cpuLoad>
+         <memory>1</memory>
+         <makeSpan>160000</makeSpan>
+         <bootTime>3000</bootTime>
+         <dataToTransfer>4</dataToTransfer>
+         <internPort>8080</internPort>
+      </serviceTypeResources>
+      <onlyInternal>false</onlyInternal>
+   </serviceType>
 </ServiceRegistry>

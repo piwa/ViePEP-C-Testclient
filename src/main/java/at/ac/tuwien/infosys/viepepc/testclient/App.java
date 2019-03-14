@@ -44,27 +44,17 @@ public class App implements CommandLineRunner {
 
     public void run(String... args) {
         try {
-            if(requestPattern.equalsIgnoreCase("pyramid")) {
-                testPyramid();
-            }
-            else {
-                testConstant();
-            }
+//            if(requestPattern.equalsIgnoreCase("pyramid")) {
+//                testPyramid();
+//            }
+//            else {
+//                testConstant();
+//            }
 
 
-//            testSingleShot("process10");
-//            TimeUnit.SECONDS.sleep(90);
-//            testSingleShot("process1");
-//            TimeUnit.SECONDS.sleep(90);
-//            testSingleShot("process1");
-//            TimeUnit.SECONDS.sleep(90);
-//            testSingleShot("process1");
-//            TimeUnit.SECONDS.sleep(90);
-//            testSingleShot("process1");
+            testSingleShot("processFailureTest");
+//            testSingleShot("processGdprTest");
 
-
-            //testTau_T_1();
-            //toit_test_1();
         }catch(Exception ex ){
             log.error("EXCEPTION", ex);
         }
@@ -216,7 +206,13 @@ public class App implements CommandLineRunner {
                 case "process_parallel":
                     workflowElement = exampleProcesses.getProcess10(UUID.randomUUID().toString().substring(0, 8) + "pr10", deadline);
                     break;
+                case "processFailureTest":
+                    workflowElement = exampleProcesses.getProcessFailureTest(UUID.randomUUID().toString().substring(0, 8) + "prFailureTest", deadline);
+                    break;
 
+                case "processGdprTest":
+                    workflowElement = exampleProcesses.getProcessGdprTest(UUID.randomUUID().toString().substring(0, 8) + "prGdprTest", deadline);
+                    break;
 
                 default:
                     workflowElement = exampleProcesses.getProcess1(UUID.randomUUID().toString().substring(0, 8) + "pr1", deadline);

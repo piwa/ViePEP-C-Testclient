@@ -9,9 +9,6 @@ import org.springframework.stereotype.Component;
 import java.util.Arrays;
 import java.util.Date;
 
-/**
- * Created by Philipp Hoenisch on 6/20/14.
- */
 @Component
 public class ExampleProcesses {
 
@@ -286,4 +283,34 @@ public class ExampleProcesses {
     }
 
 
+    public WorkflowElement getProcessFailureTest(String name, Date deadline ) throws ServiceTypeNotFoundException {
+        WorkflowElement workflow = new WorkflowElement(name, deadline.getTime());
+        Sequence seq = new Sequence(name + "-seq");
+        ProcessStep elem1 = new ProcessStep(name + ".1", serviceRegistryReader.findServiceType("Service6"), workflow.getName());
+        seq.addElement(elem1);
+        ProcessStep elem2 = new ProcessStep(name + ".2", serviceRegistryReader.findServiceType("Service7"), workflow.getName());
+        seq.addElement(elem2);
+        ProcessStep elem = new ProcessStep(name + ".3", serviceRegistryReader.findServiceType("Service8"), workflow.getName());
+        elem.setLastElement(true);
+        seq.addElement(elem);
+        workflow.addElement(seq);
+
+        return workflow;
+    }
+
+    public WorkflowElement getProcessGdprTest(String name, Date deadline) throws ServiceTypeNotFoundException {
+        WorkflowElement workflow = new WorkflowElement(name, deadline.getTime());
+        Sequence seq = new Sequence(name + "-seq");
+        ProcessStep elem1 = new ProcessStep(name + ".1", serviceRegistryReader.findServiceType("Service1"), workflow.getName());
+        seq.addElement(elem1);
+        ProcessStep elem2 = new ProcessStep(name + ".2", serviceRegistryReader.findServiceType("Service2"), workflow.getName());
+        elem2.setContainsPrivacyRelevantData(true);
+        seq.addElement(elem2);
+        ProcessStep elem = new ProcessStep(name + ".3", serviceRegistryReader.findServiceType("Service3"), workflow.getName());
+        elem.setLastElement(true);
+        seq.addElement(elem);
+        workflow.addElement(seq);
+
+        return workflow;
+    }
 }
